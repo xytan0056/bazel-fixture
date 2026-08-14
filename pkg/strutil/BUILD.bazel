@@ -3,7 +3,10 @@ load("@rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "strutil",
     srcs = ["strutil.go"],
-    embedsrcs = ["replacements.json"],
+    embedsrcs = [
+        "greetings.json",
+        "replacements.json",
+    ],
     importpath = "github.com/xytan0056/bazel-fixture/pkg/strutil",
     visibility = ["//visibility:public"],
 )

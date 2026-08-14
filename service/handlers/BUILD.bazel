@@ -8,8 +8,8 @@ go_library(
     deps = [
         "//pkg/errors",
         "//pkg/logger",
-        "//pkg/mathutil",
         "//pkg/strutil",
+        "//service/audit",
         "//service/config",
         "//service/store",
     ],
@@ -21,6 +21,7 @@ go_test(
     embed = [":handlers"],
     deps = [
         "//pkg/logger",
+        "//service/audit",
         "//service/config",
         "//service/store",
         "@com_github_stretchr_testify//assert",

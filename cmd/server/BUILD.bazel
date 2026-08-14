@@ -9,6 +9,7 @@ go_library(
         "//pkg/logger",
         "//pkg/version",
         "//service/api",
+        "//service/audit",
         "//service/config",
         "//service/handlers",
         "//service/store",

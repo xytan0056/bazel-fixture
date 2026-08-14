@@ -18,12 +18,12 @@ func New(h *handlers.Handlers, log *logger.Logger) *API {
 }
 
 // Serve routes an incoming request name to the appropriate handler.
-func (a *API) Serve(op string, arg string) (string, error) {
+func (a *API) Serve(actor, op, arg string) (string, error) {
 	switch op {
 	case "echo":
-		return a.h.Echo(arg)
+		return a.h.Echo(actor, arg)
 	case "put":
-		return "", a.h.Put(arg, arg)
+		return "", a.h.Put(actor, arg, arg)
 	default:
 		return "", fxerrors.New(fxerrors.CodeInvalidInput, "unknown op "+op)
 	}

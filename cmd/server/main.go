@@ -8,6 +8,7 @@ import (
 	"github.com/xytan0056/bazel-fixture/pkg/logger"
 	"github.com/xytan0056/bazel-fixture/pkg/version"
 	"github.com/xytan0056/bazel-fixture/service/api"
+	"github.com/xytan0056/bazel-fixture/service/audit"
 	"github.com/xytan0056/bazel-fixture/service/config"
 	"github.com/xytan0056/bazel-fixture/service/handlers"
 	"github.com/xytan0056/bazel-fixture/service/store"
@@ -24,8 +25,9 @@ func main() {
 	}
 	log.Info(cfg.String())
 
-	a := api.New(handlers.New(cfg, store.New(log), log), log)
-	out, err := a.Serve("echo", "hello & world")
+	rec := audit.NewRecorder(log)
+	a := api.New(handlers.New(cfg, store.New(log), rec, log), log)
+	out, err := a.Serve("system", "echo", "hello & world")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

@@ -18,6 +18,7 @@ go_test(
     embed = [":api"],
     deps = [
         "//pkg/logger",
+        "//service/audit",
         "//service/config",
         "//service/handlers",
         "//service/store",

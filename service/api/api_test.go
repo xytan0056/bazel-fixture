@@ -7,6 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/xytan0056/bazel-fixture/pkg/logger"
+	"github.com/xytan0056/bazel-fixture/service/audit"
 	"github.com/xytan0056/bazel-fixture/service/config"
 	"github.com/xytan0056/bazel-fixture/service/handlers"
 	"github.com/xytan0056/bazel-fixture/service/store"
@@ -18,8 +19,8 @@ func TestServeEcho(t *testing.T) {
 		MaxConnections: 100,
 	}
 	log := logger.New()
-	a := New(handlers.New(cfg, store.New(log), log), log)
-	out, err := a.Serve("echo", "hello world")
+	a := New(handlers.New(cfg, store.New(log), audit.NewRecorder(log), log), log)
+	out, err := a.Serve("alice", "echo", "hello world")
 	require.NoError(t, err)
 	assert.Equal(t, "Hello World", out)
 }

@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "audit",
+    srcs = ["audit.go"],
+    importpath = "github.com/xytan0056/bazel-fixture/service/audit",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/logger",
+        "//pkg/timeutil",
+    ],
+)
+
+go_test(
+    name = "audit_test",
+    srcs = ["audit_test.go"],
+    embed = [":audit"],
+    deps = [
+        "//pkg/logger",
+        "@com_github_stretchr_testify//assert",
+    ],
+)

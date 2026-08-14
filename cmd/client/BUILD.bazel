@@ -8,6 +8,7 @@ go_library(
     deps = [
         "//pkg/logger",
         "//service/api",
+        "//service/audit",
         "//service/config",
         "//service/handlers",
         "//service/store",

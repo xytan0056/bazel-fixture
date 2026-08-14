@@ -39,3 +39,8 @@ func (l *Logger) Info(msg string)  { l.log(LevelInfo, msg) }
 func (l *Logger) Warn(msg string)  { l.log(LevelWarn, msg) }
 func (l *Logger) Error(msg string) { l.log(LevelError, msg) }
 func (l *Logger) Debug(msg string) { l.log(LevelDebug, msg) }
+
+// Infof formats and logs at INFO level.
+func (l *Logger) Infof(format string, args ...any) {
+	l.log(LevelInfo, fmt.Sprintf(format, args...))
+}
