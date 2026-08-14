@@ -1,0 +1,26 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "config",
+    srcs = ["config.go"],
+    embedsrcs = [
+        "config.yaml",
+        "defaults.json",
+    ],
+    importpath = "github.com/xytan0056/bazel-fixture/service/config",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/errors",
+        "@com_github_goccy_go_yaml//:go-yaml",
+    ],
+)
+
+go_test(
+    name = "config_test",
+    srcs = ["config_test.go"],
+    embed = [":config"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

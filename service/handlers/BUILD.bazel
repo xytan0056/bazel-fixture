@@ -1,0 +1,29 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "handlers",
+    srcs = ["handlers.go"],
+    importpath = "github.com/xytan0056/bazel-fixture/service/handlers",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/errors",
+        "//pkg/logger",
+        "//pkg/mathutil",
+        "//pkg/strutil",
+        "//service/config",
+        "//service/store",
+    ],
+)
+
+go_test(
+    name = "handlers_test",
+    srcs = ["handlers_test.go"],
+    embed = [":handlers"],
+    deps = [
+        "//pkg/logger",
+        "//service/config",
+        "//service/store",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

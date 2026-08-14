@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "mathutil",
+    srcs = ["mathutil.go"],
+    importpath = "github.com/xytan0056/bazel-fixture/pkg/mathutil",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "mathutil_test",
+    srcs = ["mathutil_test.go"],
+    embed = [":mathutil"],
+)
