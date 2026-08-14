@@ -6,7 +6,6 @@ import (
 
 	fxerrors "github.com/xytan0056/bazel-fixture/pkg/errors"
 	"github.com/xytan0056/bazel-fixture/pkg/logger"
-	"github.com/xytan0056/bazel-fixture/pkg/mathutil"
 	"github.com/xytan0056/bazel-fixture/pkg/strutil"
 	"github.com/xytan0056/bazel-fixture/service/config"
 	"github.com/xytan0056/bazel-fixture/service/store"
@@ -28,7 +27,13 @@ func (h *Handlers) Echo(message string) (string, error) {
 	if !h.cfg.Features.Echo {
 		return "", fxerrors.New(fxerrors.CodeInvalidInput, "echo feature disabled")
 	}
-	limit := mathutil.Clamp(h.cfg.MaxConnections, 1, 4096)
+	limit := h.cfg.MaxConnections
+	if limit < 1 {
+		limit = 1
+	}
+	if limit > 4096 {
+		limit = 4096
+	}
 	sanitized := strutil.Sanitize(message)
 	titled := strutil.TitleWords(sanitized)
 	if len(titled) > limit {

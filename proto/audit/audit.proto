@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package fixture.audit;
+
+option go_package = "github.com/xytan0056/bazel-fixture/proto/audit";
+
+import "common.proto";
+
+message AuditEvent {
+  string event_id = 1;
+  string actor = 2;
+  string action = 3;
+  string resource = 4;
+  fixture.common.Timestamp created_at = 5;
+}

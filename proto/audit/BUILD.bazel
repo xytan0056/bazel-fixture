@@ -1,0 +1,8 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "audit_proto",
+    srcs = ["audit.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//proto/common:common_proto"],
+)
