@@ -1,0 +1,5 @@
+service_name: fixture
+environment: development
+features:
+  echo: true
+  store: true

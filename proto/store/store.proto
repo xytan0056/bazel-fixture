@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package fixture.store;
+
+import "proto/common/common.proto";
+
+option go_package = "github.com/xytan0056/bazel-fixture/proto/store";
+
+message Record {
+  string id = 1;
+  bytes payload = 2;
+  int64 created_at_unix = 3;
+}
+
+message ListRequest {
+  fixture.common.Pagination page = 1;
+}
+
+message ListResponse {
+  repeated Record records = 1;
+  string next_cursor = 2;
+}

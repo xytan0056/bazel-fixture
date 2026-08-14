@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "client_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/xytan0056/bazel-fixture/cmd/client",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//pkg/logger",
+        "//service/api",
+        "//service/config",
+        "//service/handlers",
+        "//service/store",
+    ],
+)
+
+go_binary(
+    name = "client",
+    embed = [":client_lib"],
+    visibility = ["//visibility:public"],
+)

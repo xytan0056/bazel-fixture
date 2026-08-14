@@ -1,0 +1,27 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "api",
+    srcs = ["api.go"],
+    importpath = "github.com/xytan0056/bazel-fixture/service/api",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/errors",
+        "//pkg/logger",
+        "//service/handlers",
+    ],
+)
+
+go_test(
+    name = "api_test",
+    srcs = ["api_test.go"],
+    embed = [":api"],
+    deps = [
+        "//pkg/logger",
+        "//service/config",
+        "//service/handlers",
+        "//service/store",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

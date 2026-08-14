@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package fixture.common;
+
+option go_package = "github.com/xytan0056/bazel-fixture/proto/common";
+
+// Status is a canonical status code shared across services.
+message Status {
+  int32 code = 1;
+  string message = 2;
+}
+
+// Pagination describes a page cursor for list APIs.
+message Pagination {
+  string cursor = 1;
+  int32 limit = 2;
+}

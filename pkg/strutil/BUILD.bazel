@@ -1,0 +1,16 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "strutil",
+    srcs = ["strutil.go"],
+    embedsrcs = ["replacements.json"],
+    importpath = "github.com/xytan0056/bazel-fixture/pkg/strutil",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "strutil_test",
+    srcs = ["strutil_test.go"],
+    embed = [":strutil"],
+    deps = ["@com_github_stretchr_testify//assert"],
+)

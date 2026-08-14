@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+genrule(
+    name = "version_gen",
+    srcs = ["version_gen.go.tmpl"],
+    outs = ["version_gen.go"],
+    cmd = "sed 's/@BUILD_TAG@/fixture-v0.1.0/g' $< > $@",
+)
+
+go_library(
+    name = "version",
+    srcs = [
+        "version.go",
+        ":version_gen",
+    ],
+    importpath = "github.com/xytan0056/bazel-fixture/pkg/version",
+    visibility = ["//visibility:public"],
+)
