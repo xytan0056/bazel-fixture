@@ -1,0 +1,8 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "timeutil",
+    srcs = ["timeutil.go"],
+    importpath = "github.com/xytan0056/bazel-fixture/pkg/timeutil",
+    visibility = ["//visibility:public"],
+)
