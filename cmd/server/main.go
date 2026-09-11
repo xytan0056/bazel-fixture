@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/xytan0056/bazel-fixture/pkg/logger"
-	"github.com/xytan0056/bazel-fixture/pkg/version"
 	"github.com/xytan0056/bazel-fixture/service/api"
 	"github.com/xytan0056/bazel-fixture/service/config"
 	"github.com/xytan0056/bazel-fixture/service/handlers"
@@ -15,7 +14,7 @@ import (
 
 func main() {
 	log := logger.New()
-	log.Info(version.Name() + " " + version.BuildTag())
+	log.Info("bazel-fixture starting")
 
 	cfg, err := config.Load()
 	if err != nil {

@@ -1,2 +1,3 @@
 common --enable_bzlmod
 common --disk_cache=~/.cache/bazel-disk-cache
+common --nolegacy_external_runfiles
